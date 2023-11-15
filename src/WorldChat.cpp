@@ -66,8 +66,8 @@ std::string world_chat_GMIcon = "|TINTERFACE/CHATFRAME/UI-CHATICON-BLIZZ:13:13:0
 /* COLORED TEXT FOR CURRENT FACTION || NOT FOR GMS */
 std::string world_chat_TeamIcon[2] =
 {
-    "|cff3399FFAlliance|r",
-    "|cffCC0000Horde|r"
+    "|cff3399FF联盟|r",
+    "|cffCC0000部落|r"
 };
 
 /* Config Variables */
@@ -156,11 +156,11 @@ void SendWorldMessage(Player* sender, const char* msg, int team) {
             {
                 if (sender->isGMChat())
                 {
-                    snprintf(message, 1024, "[World][%s][%s|Hplayer:%s|h%s|h|r]: %s%s|r", ((sender->HasFlag(PLAYER_FLAGS, PLAYER_FLAGS_DEVELOPER)) ? (world_chat_ClassColor[5] + "DEV|r").c_str() : world_chat_GMIcon.c_str()) , world_chat_ClassColor[sender->getClass() - 1].c_str(), sender->GetName().c_str(), sender->GetName().c_str(), WORLD_CHAT_WHITE.c_str(), msg);
+                    snprintf(message, 1024, "[世界][%s][%s|Hplayer:%s|h%s|h|r]: %s%s|r", ((sender->HasFlag(PLAYER_FLAGS, PLAYER_FLAGS_DEVELOPER)) ? (world_chat_ClassColor[5] + "DEV|r").c_str() : world_chat_GMIcon.c_str()) , world_chat_ClassColor[sender->getClass() - 1].c_str(), sender->GetName().c_str(), sender->GetName().c_str(), WORLD_CHAT_WHITE.c_str(), msg);
                 }
                 else
                 {
-                    snprintf(message, 1024, "[World][%s][%s|Hplayer:%s|h%s|h|r]: %s%s|r", world_chat_TeamIcon[sender->GetTeamId()].c_str(), world_chat_ClassColor[sender->getClass() - 1].c_str(), sender->GetName().c_str(), sender->GetName().c_str(), WORLD_CHAT_WHITE.c_str(), msg);
+                    snprintf(message, 1024, "[世界][%s][%s|Hplayer:%s|h%s|h|r]: %s%s|r", world_chat_TeamIcon[sender->GetTeamId()].c_str(), world_chat_ClassColor[sender->getClass() - 1].c_str(), sender->GetName().c_str(), sender->GetName().c_str(), WORLD_CHAT_WHITE.c_str(), msg);
                 }
                 ChatHandler(target->GetSession()).PSendSysMessage("%s", message);
             }
@@ -271,9 +271,9 @@ public:
 
         static std::vector<ChatCommand> commandTable =
         {
-            { "chat", SEC_PLAYER, true, NULL , "" , wcCommandTable},
-            { "chath", SEC_MODERATOR, true, &HandleWorldChatHordeCommand , ""},
-            { "chata", SEC_MODERATOR, true, &HandleWorldChatAllianceCommand , ""},
+            { "sj", SEC_PLAYER, true, NULL , "" , wcCommandTable},
+            { "sjh", SEC_MODERATOR, true, &HandleWorldChatHordeCommand , ""},
+            { "sja", SEC_MODERATOR, true, &HandleWorldChatAllianceCommand , ""},
         };
 
         return commandTable;
